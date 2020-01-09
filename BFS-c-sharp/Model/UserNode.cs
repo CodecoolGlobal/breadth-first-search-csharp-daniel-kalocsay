@@ -12,7 +12,7 @@ namespace BFS_c_sharp.Model
         public HashSet<UserNode> Friends
         {
             get { return _friends; }
-        }
+        } 
 
 
         public UserNode() { }

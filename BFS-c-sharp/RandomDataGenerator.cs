@@ -23,6 +23,7 @@ namespace BFS_c_sharp
             List<UserNode> users = new List<UserNode>();
             UserNode firstUser = GenerateNewUser();
             users.Add(firstUser);
+            
             // first generate and connect users in a star shaped tree
             GenerateTree(firstUser, users, 4);
 
