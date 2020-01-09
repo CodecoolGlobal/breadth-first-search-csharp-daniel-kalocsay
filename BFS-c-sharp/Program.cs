@@ -23,7 +23,7 @@ namespace BFS_c_sharp
         private static void TestBfsMethods(List<UserNode> users)
         {
             BFS bfs = new BFS(users);
-            bfs.VisitAllNodes(users[0]);
+            bfs.VisitAllNodes();
         }
 
         private static void ShowUsers(List<UserNode> users)
