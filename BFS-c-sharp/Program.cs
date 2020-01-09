@@ -12,18 +12,22 @@ namespace BFS_c_sharp
             var users = generator.Generate();
             
             ShowUsers(users);
-            
             TestBfsMethods(users);
 
             Console.WriteLine("\nDone");
-
             Console.ReadKey();
         }
 
         private static void TestBfsMethods(List<UserNode> users)
         {
-            BFS bfs = new BFS(users);
-            bfs.VisitAllNodes();
+            BFS bfs = new BFS();
+            bfs.VisitAllNodes(users);
+
+            var user1 = users[0];
+            var user2 = users[20];
+            
+            Console.WriteLine($"\nDistance between {user1} and {user2}:\n");
+            Console.WriteLine(bfs.CalculateUsersDistance(user1, user2));
         }
 
         private static void ShowUsers(List<UserNode> users)

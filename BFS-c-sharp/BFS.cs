@@ -7,18 +7,44 @@ namespace BFS_c_sharp
 {
     public class BFS
     {
-        private List<UserNode> _users;
-
-        public BFS(List<UserNode> users)
+        public int CalculateUsersDistance(UserNode user1, UserNode user2)
         {
-            _users = users;
+            int distance = 0;
+            var currentNode = user1;
+            
+            Queue<UserNode> toVisit = new Queue<UserNode>();
+            List<UserNode> visited = new List<UserNode>();
+            
+            toVisit.Enqueue(currentNode);
+
+            while (toVisit.Count > 0)
+            {
+                currentNode = toVisit.Peek();
+                distance++;
+                
+                foreach (var neighbor in currentNode.Friends)
+                {
+                    if (neighbor == user2)
+                    {
+                        return distance;
+                    }
+                    if (!visited.Contains(neighbor) && !toVisit.Contains(neighbor))
+                    {
+                        toVisit.Enqueue(neighbor);
+                    }
+                }
+
+                visited.Add(toVisit.Dequeue());
+            }
+
+            return distance;
         }
 
-        public void VisitAllNodes()
+        public void VisitAllNodes(List<UserNode> users)
         {
-            Console.WriteLine($"\nThere are {_users.Count} users in total.\n");
+            Console.WriteLine($"\nThere are {users.Count} users in total.\n");
             
-            var currentNode = _users[0];
+            var currentNode = users[0];
             
             Queue<UserNode> toVisit = new Queue<UserNode>();
             List<UserNode> visited = new List<UserNode>();
@@ -41,9 +67,14 @@ namespace BFS_c_sharp
             }
 
             Console.WriteLine($"\nVisited {visited.Count} users:\n");
-            foreach (var node in visited)
+            PrintUsers(visited);
+        }
+
+        private void PrintUsers(List<UserNode> users)
+        {
+            foreach (var user in users)
             {
-                Console.WriteLine(node);
+                Console.WriteLine(user);
             }
         }
     }
