@@ -1,12 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using BFS_c_sharp.Model;
 
 namespace BFS_c_sharp
 {
     public class BFS
     {
+        public List<UserNode> GetFriendsOfFriends(UserNode user, int distance)
+        {
+            HashSet<UserNode> friendsOfFriends = new HashSet<UserNode>();
+
+            var currentNode = user;
+            Queue<UserNode> toVisit = new Queue<UserNode>();
+            
+            toVisit.Enqueue(currentNode);
+
+            while (distance > 0)
+            {
+                currentNode = toVisit.Peek();
+                distance--;
+                
+                foreach (var neighbor in currentNode.Friends)
+                {
+                    if (!friendsOfFriends.Contains(neighbor) && !toVisit.Contains(neighbor))
+                    {
+                        toVisit.Enqueue(neighbor);
+                    }
+                }
+
+                friendsOfFriends.Add(toVisit.Dequeue());
+            }
+
+            friendsOfFriends.Remove(user);
+            return friendsOfFriends.ToList();
+        }
         public int CalculateUsersDistance(UserNode user1, UserNode user2)
         {
             int distance = 0;
