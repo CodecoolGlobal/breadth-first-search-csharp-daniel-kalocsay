@@ -37,6 +37,7 @@ namespace BFS_c_sharp
                 visited.Add(toVisit.Dequeue());
             }
 
+            //TODO this might be wrong, thing is, i don't know how to test it yet
             return distance;
         }
 
