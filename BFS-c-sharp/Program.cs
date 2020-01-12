@@ -24,7 +24,7 @@ namespace BFS_c_sharp
             bfs.VisitAllNodes(users);
 
             var user1 = users[0];
-            var user2 = users[20];
+            var user2 = users[26];
             
             Console.WriteLine($"\nDistance between {user1} and {user2}:\n");
             Console.WriteLine(bfs.CalculateUsersDistance(user1, user2));
@@ -36,6 +36,18 @@ namespace BFS_c_sharp
             foreach (var friend in bfs.GetFriendsOfFriends(user1, distance))
             {
                 Console.WriteLine(friend);
+            }
+
+            Console.WriteLine($"\nShortest paths between {user1} and {user2}:");
+            var shortestPaths = bfs.GetShortestPaths(user1, user2);
+
+            foreach (var path in shortestPaths)
+            {
+                Console.WriteLine("\nPath:\n");
+                foreach (var user in path)
+                {
+                    Console.WriteLine(user);
+                }
             }
         }
 
