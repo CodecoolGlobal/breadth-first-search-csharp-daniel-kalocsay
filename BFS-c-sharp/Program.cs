@@ -9,9 +9,10 @@ namespace BFS_c_sharp
         static void Main(string[] args)
         {
             RandomDataGenerator generator = new RandomDataGenerator();
-            var users = generator.Generate();
+            // var users = generator.Generate();
+            var users = generator.GenerateCustomTree();
             
-            ShowUsers(users);
+//            ShowUsers(users);
             TestBfsMethods(users);
 
             Console.WriteLine("\nDone");
@@ -24,12 +25,12 @@ namespace BFS_c_sharp
             bfs.VisitAllNodes(users);
 
             var user1 = users[0];
-            var user2 = users[26];
+            var user2 = users[6];
             
             Console.WriteLine($"\nDistance between {user1} and {user2}:\n");
             Console.WriteLine(bfs.CalculateUsersDistance(user1, user2));
 
-            var distance = 40;
+            var distance = 2;
 
             Console.WriteLine($"\n{user1}'s friends of friends at {distance} distance:\n");
 

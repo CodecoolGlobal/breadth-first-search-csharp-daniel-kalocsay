@@ -29,6 +29,14 @@ namespace BFS_c_sharp.Model
             friend.Friends.Add(this);
         }
 
+        public void AddFriends(List<UserNode> friends)
+        {
+            foreach (var friend in friends)
+            {
+                Friends.Add(friend);
+            }
+        }
+
         public override string ToString()
         {
             return $"{FirstName} {LastName} ({Friends.Count})";
